@@ -1,0 +1,2 @@
+These logs are generated automatically by the highAltBalloon programs.
+While they are human readable, it is reccomended that you use some sort of graphing program to create better formatted results.
