@@ -1,0 +1,50 @@
+#Bring needed modules into program
+
+import os
+import time
+import argparse
+from datetime import datetime
+
+sensorFile = '/sys/bus/w1/devices/28-0000056e80cd/w1_slave'
+
+
+def readTempRaw():
+	f = open(sensorFile, 'r')
+	lines = f.readlines()
+	f.close()
+	return lines
+def readTemp():
+	lines = readTempRaw()
+	while lines[0].strip()[-3:] != 'YES':
+		time.sleep(0.2)
+		lines = readTempRaw()
+	equalsPos = lines[1].find('t=')
+	if equalsPos != -1:
+		tempString = lines[1][equalsPos+2:]
+		tempC = float(tempString)/1000.0
+		return tempC
+
+f = open('../../logs/templog.txt', 'w')
+
+parser = argparse.ArgumentParser(description='Log surrounding temp.')
+parser.add_argument("-s" "--seconds", type=int, dest="seconds", help="Number of seconds between logs")
+args = parser.parse_args()
+seconds = args.seconds
+
+if seconds:
+	interval = seconds
+else:
+	interval = input("Enter logging interval (seconds): ")
+
+while True:
+	d = datetime.now()
+	year = "%02d" % (d.year)
+	month = "%02d" % (d.month)
+	day = "%02d" % (d.day)
+	hour = "%02d" % (d.hour)
+	min = "%02d" % (d.minute)
+	sec = "%02d" % (d.second)
+
+	f.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + str(readTemp()) + 'C\n')
+	time.sleep(int(interval))
+
