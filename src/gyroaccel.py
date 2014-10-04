@@ -42,6 +42,8 @@ bus.write_byte_data(address, power_mgmt_1, 0)
 
 gyroF = open('../../logs/gyro.txt', 'w')
 accelF = open('../../logs/accel.txt', 'w')
+GLgyroF = open('../../logs/GLgyro.txt', 'w')
+GLaccelF = open('../../logs/GLaccel.txt', 'w')
 
 # init argparse
 parser = argparse.ArgumentParser(description='Log surrounding gyro/accel.')
@@ -82,7 +84,11 @@ while True:
 	min = "%02d" % (d.minute)
 	sec = "%02d" % (d.second)
 
+	# human readable log
 	gyroF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + 'x: ' + str(gyro_xout_scaled) + 'y: ' + str(gyro_yout_scaled) + 'z: ' + str(gyro_zout_scaled) + 'degrees per second\n')
 	accelF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + 'x: ' + str(accel_xout_scaled) + 'y: ' + str(accel_yout_scaled) + 'z: ' + str(accel_zout_scaled) + 'm s^-2\n')
 
+	# openGL log
+	GLaccelF.write(str(get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))+" "+str(get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)))
+	
 	time.sleep(int(interval))
