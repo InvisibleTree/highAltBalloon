@@ -7,10 +7,13 @@ from Adafruit_BMP085 import BMP085
 bmp = BMP085(0x77)
 
 #Create logging files 
-#!!OVERWRITES ANY OLD FILES THERE!! 
-#TODO Sort logs by date created?
-pressureF = open('../../logs/pressurelog.txt', 'w')
-altF = open('../../logs/altLog.txt', 'w')
+#>>!!OVERWRITES ANY OLD FILES THERE!! 
+#DONE Sort logs by date created?
+logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
+logPressure = "PRESSURE-" + logTime
+logAlt = "ALTITUDE-" + logTime
+pressureF = open('../../logs/' + logPressure, 'w')
+altF = open('../../logs/' + logAlt, 'w')
 
 #Check command line arguments for parameters
 parser = argparse.ArgumentParser(description='Log surrounding temp.')
