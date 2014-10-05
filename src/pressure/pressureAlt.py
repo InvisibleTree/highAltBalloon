@@ -7,8 +7,8 @@ from Adafruit_BMP085 import BMP085
 bmp = BMP085(0x77)
 
 #Create logging files 
-#>>!!OVERWRITES ANY OLD FILES THERE!! 
-#DONE Sort logs by date created?
+#FIXED !!OVERWRITES ANY OLD FILES THERE!! 
+#FIXED Sort logs by date created?
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
 logPressure = "PRESSURE-" + logTime
 logAlt = "ALTITUDE-" + logTime

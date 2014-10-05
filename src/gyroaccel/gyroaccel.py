@@ -4,6 +4,7 @@ import smbus
 import time
 import math
 from datetime import datetime
+
 # Power management registers 
 power_mgmt_1 = 0x6b
 power_mgmt_2 = 0x6c
@@ -42,10 +43,18 @@ address = 0x68 # i2c address of MPU-6050
 #wake up 6050 
 bus.write_byte_data(address, power_mgmt_1, 0)
 
-gyroF = open('../../logs/gyro.txt', 'w')
-accelF = open('../../logs/accel.txt', 'w')
-GLgyroF = open('../../logs/GLgyro.txt', 'w')
-GLaccelF = open('../../logs/GLaccel.txt', 'w')
+#create logs
+logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
+
+logGyro = "GYRO-" + logTime
+logAccel = "ACCEL-" + logTime
+logGLGyro = "GLGYRO-" + logTime
+LogGLAccel = "GLACCEL-" + logTime
+
+gyroF = open('../../logs/' + logGyro, 'w')
+accelF = open('../../logs/' + logAccel, 'w')
+GLgyroF = open('../../logs/' + logGLGyro, 'w')
+GLaccelF = open('../../logs/' + logGLAccel, 'w')
 
 # init argparse
 parser = argparse.ArgumentParser(description='Log surrounding gyro/accel.')
