@@ -14,7 +14,7 @@ fileIncr = 1
 
 # create save dir
 
-os.mkdir(str(saveFolder))
+os.mkdir('../../logs/' + str(saveFolder))
 # loop infinitely
 while True:
 

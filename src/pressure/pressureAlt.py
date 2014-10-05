@@ -35,7 +35,7 @@ while True:
 	sec = "%02d" % (d.second)
 
 #Write to log files
-	pressureF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + str(bmp.readPressure()) + 'hPa\n')
-	altF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + str(bmp.readAltitude()) + 'm\n')
+	pressureF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(bmp.readPressure()) + 'Pa\n')
+	altF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(bmp.readAltitude()) + 'm\n')
 	time.sleep(int(interval))
 

@@ -45,6 +45,6 @@ while True:
 	min = "%02d" % (d.minute)
 	sec = "%02d" % (d.second)
 
-	f.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + str(readTemp()) + 'C\n')
+	f.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(readTemp()) + 'C\n')
 	time.sleep(int(interval))
 

@@ -1,5 +1,7 @@
 #!/usr/bin/python
+import argparse
 import smbus
+import time
 import math
 from datetime import datetime
 # Power management registers 
@@ -28,13 +30,13 @@ def dist(a,b):
 
 def get_y_rotation(x,y,z):
 	radians = math.atan2(x, dist(y,z))
-	return -math.degree(radians)
+	return -math.degrees(radians)
 
 def get_x_rotation(x,y,z):
 	radians = math.atan2(y, dist(x,z))
 	return math.degrees(radians)
 
-bus = smbus.SMBus(0)
+bus = smbus.SMBus(1)
 address = 0x68 # i2c address of MPU-6050
 
 #wake up 6050 
@@ -85,8 +87,8 @@ while True:
 	sec = "%02d" % (d.second)
 
 	# human readable log
-	gyroF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + 'x: ' + str(gyro_xout_scaled) + 'y: ' + str(gyro_yout_scaled) + 'z: ' + str(gyro_zout_scaled) + 'degrees per second\n')
-	accelF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + '= ' + 'x: ' + str(accel_xout_scaled) + 'y: ' + str(accel_yout_scaled) + 'z: ' + str(accel_zout_scaled) + 'm s^-2\n')
+	gyroF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + ' x: ' + str(gyro_xout_scaled) + ' y: ' + str(gyro_yout_scaled) + ' z: ' + str(gyro_zout_scaled) + ' degrees per second\n')
+	accelF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + ' x: ' + str(accel_xout_scaled) + ' y: ' + str(accel_yout_scaled) + ' z: ' + str(accel_zout_scaled) + ' m s^-2\n')
 
 	# openGL log
 	GLaccelF.write(str(get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))+" "+str(get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)))
