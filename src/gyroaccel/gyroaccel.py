@@ -49,7 +49,7 @@ logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
 logGyro = "GYRO-" + logTime
 logAccel = "ACCEL-" + logTime
 logGLGyro = "GLGYRO-" + logTime
-LogGLAccel = "GLACCEL-" + logTime
+logGLAccel = "GLACCEL-" + logTime
 
 gyroF = open('../../logs/' + logGyro, 'w')
 accelF = open('../../logs/' + logAccel, 'w')
