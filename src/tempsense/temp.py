@@ -25,7 +25,7 @@ def readTemp():
 
 #Timestamped logging
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
-logTemp = "TEMP-" + logTime
+logTemp = "TEMP-" + logTime + ".log"
 f = open('../../logs/' + logTemp, 'w')
 
 #check program arguments

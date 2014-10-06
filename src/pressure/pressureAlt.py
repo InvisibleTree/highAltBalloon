@@ -10,8 +10,8 @@ bmp = BMP085(0x77)
 #FIXED !!OVERWRITES ANY OLD FILES THERE!! 
 #FIXED Sort logs by date created?
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
-logPressure = "PRESSURE-" + logTime
-logAlt = "ALTITUDE-" + logTime
+logPressure = "PRESSURE-" + logTime + ".log"
+logAlt = "ALTITUDE-" + logTime + ".log"
 pressureF = open('../../logs/' + logPressure, 'w')
 altF = open('../../logs/' + logAlt, 'w')
 

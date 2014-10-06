@@ -46,10 +46,10 @@ bus.write_byte_data(address, power_mgmt_1, 0)
 #create logs
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
 
-logGyro = "GYRO-" + logTime
-logAccel = "ACCEL-" + logTime
-logGLGyro = "GLGYRO-" + logTime
-logGLAccel = "GLACCEL-" + logTime
+logGyro = "GYRO-" + logTime + ".log"
+logAccel = "ACCEL-" + logTime + ".log"
+logGLGyro = "GLGYRO-" + logTime + ".log"
+logGLAccel = "GLACCEL-" + logTime + ".log"
 
 gyroF = open('../../logs/' + logGyro, 'w')
 accelF = open('../../logs/' + logAccel, 'w')
