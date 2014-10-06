@@ -4,6 +4,11 @@ import os
 import time
 
 # get params from user
+# TODO change this to a more automatic form:
+# 1. check args
+# 2. no -s? ask for interval
+# 3. no -w or -h? default to max size
+# 4. no save folder (-sf)? default to local ~/pictures/picam
 saveFolder = input("Enter folder name to save images to: ")
 imgWidth = input("\nEnter image width (max 2592): ")
 imgHeight = input("\nEnter image height (max 1944): ")

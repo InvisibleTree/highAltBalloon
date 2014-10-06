@@ -56,6 +56,11 @@ accelF = open('../../logs/' + logAccel, 'w')
 GLgyroF = open('../../logs/' + logGLGyro, 'w')
 GLaccelF = open('../../logs/' + logGLAccel, 'w')
 
+gyroF.close()
+accelF.close()
+GLgyroF.close()
+GLaccelF.close()
+
 # init argparse
 parser = argparse.ArgumentParser(description='Log surrounding gyro/accel.')
 parser.add_argument("-s" "--seconds", type=int, dest="seconds", help="Number of seconds between logs")
@@ -95,11 +100,24 @@ while True:
 	min = "%02d" % (d.minute)
 	sec = "%02d" % (d.second)
 
+	# open log files
+	gyroF = open('../../logs/' + logGyro, 'a')
+	accelF = open('../../logs/' + logAccel, 'a')
+	GLgyroF = open('../../logs/' + logGLGyro, 'a')
+	GLaccelF = open('../../logs/' + logGLAccel, 'a')
+
 	# human readable log
 	gyroF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + ' x: ' + str(gyro_xout_scaled) + ' y: ' + str(gyro_yout_scaled) + ' z: ' + str(gyro_zout_scaled) + ' degrees per second\n')
 	accelF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + ' x: ' + str(accel_xout_scaled) + ' y: ' + str(accel_yout_scaled) + ' z: ' + str(accel_zout_scaled) + ' m s^-2\n')
 
 	# openGL log
 	GLaccelF.write(str(get_x_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled))+" "+str(get_y_rotation(accel_xout_scaled, accel_yout_scaled, accel_zout_scaled)))
-	
+
+	# close log files
+	gyroF.close()
+	accelF.close()
+	GLgyroF.close()
+	GLaccelF.close()
+
+	# pause for given interval
 	time.sleep(int(interval))

@@ -1,11 +1,11 @@
-#Bring needed modules into program
+# bring needed modules into program
 
 import os
 import time
 import argparse
 from datetime import datetime
 
-#read from the sensor's output file
+# read from the sensor's output file
 sensorFile = '/sys/bus/w1/devices/28-0000056e80cd/w1_slave'
 def readTempRaw():
 	f = open(sensorFile, 'r')
@@ -23,12 +23,12 @@ def readTemp():
 		tempC = float(tempString)/1000.0
 		return tempC
 
-#Timestamped logging
+# create log files
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
 logTemp = "TEMP-" + logTime + ".log"
 f = open('../../logs/' + logTemp, 'w')
 
-#check program arguments
+# check program arguments
 parser = argparse.ArgumentParser(description='Log surrounding temp.')
 parser.add_argument("-s" "--seconds", type=int, dest="seconds", help="Number of seconds between logs")
 args = parser.parse_args()
@@ -48,7 +48,9 @@ while True:
 	min = "%02d" % (d.minute)
 	sec = "%02d" % (d.second)
 
-#write to log
+	# write to log
+	f = open('../../logs/' + logTemp, 'a')
 	f.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(readTemp()) + 'C\n')
+	f.close
 	time.sleep(int(interval))
 
