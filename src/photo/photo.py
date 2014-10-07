@@ -3,19 +3,16 @@
 import os
 import time
 import argparse
+from datetime import datetime
 
 # get params from user
 # TODO change this to a more automatic form:
-# 1. check args
-# 2. no -s? ask for interval
-# 3. no --weight or --height? default to max size
-# 4. no save folder (-sf)? default to local ~/pictures/picam
+# rewrite in brainfuck
 
 parser = argparse.ArgumentParser(description='Log surrounding temp.')
 parser.add_argument("-s" "--seconds", type=int, dest="seconds", help="Number of seconds between images")
 parser.add_argument("--width", type=int, dest="width", help="Saved image width")
 parser.add_argument("--height", type=int, dest="height", help="Saved image height")
-parser.add_argument("-SF" "--savefolder", dest="saveFolder", help="Name of folder to save images")
 args = parser.parse_args()
 
 if args.seconds:
@@ -30,39 +27,33 @@ if args.height:
 	imgHeight = args.height
 else:
 	imgHeight = 1944
-if args.saveFolder:
-	saveFolder = args.saveFolder
-else:
-	saveFolder = "images"
 
 #saveFolder = input("Enter folder name to save images to: ")
 #imgWidth = input("\nEnter image width (max 2592): ")
 #imgHeight = input("\nEnter image height (max 1944): ")
 
-# incrementing  numerical suffix added to each image
-fileIncr = 1
 
 # create save dir
-while os.path.isdir("../../logs/" + str(saveFolder)) == False:
-	os.mkdir('../../logs/' + str(saveFolder))
-saveFolder = '../../logs/' + str(saveFolder)
+while os.path.isdir("../../logs/" + str(photos)) == False:
+	os.mkdir('../../logs/' + str(photos))
+saveFolder = '../../logs/' + str(photos)
 # loop infinitely
 while True:
 
-	# set fileIncrNo to 000X where x is fileIncr
-	fileIncrNo = "%04d" % (fileIncr)
-
-	print("\n---Saving image " + str(fileIncr) +  "---")
-	
+	# define time variables
+	d = datetime.now()
+	year = "%02d" % (d.year)
+	month = "%02d" % (d.month)
+	day = "%02d" % (d.day)
+	hour = "%02d" % (d.hour)
+	min = "%02d" % (d.minute)
+	sec = "%02d" % (d.second)
 
 	# capture the image using raspistill - Has sharpening, auto white balance and average metering mode
 	os.system("raspistill -w " + str(imgWidth) + " -h " + str(imgHeight) + " -o " + str(saveFolder) + "/" + "image_" + str(fileIncrNo) + ".jpg -sh 40 -awb auto -mm average -v")
-	
-	# increment file 
-	fileIncr += 1
+	print("\n---Saving image " + str(fileIncr) +  "---")
 
-	# wait chosen interval
-	time.sleep(interval)
+	time.sleep(int(interval))
 
 # just in case
 else:
