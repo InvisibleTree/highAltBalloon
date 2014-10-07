@@ -14,7 +14,7 @@ logPressure = "PRESSURE-" + logTime + ".log"
 pressureF = open('../../logs/' + logPressure, 'w').close()
 
 logAlt = "ALTITUDE-" + logTime + ".log"
-altF = open('../../logs/' + logAlt, 'w').close
+altF = open('../../logs/' + logAlt, 'w').close()
 
 # Check command line arguments for parameters
 parser = argparse.ArgumentParser(description='Log surrounding temp.')
