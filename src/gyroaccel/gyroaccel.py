@@ -117,3 +117,6 @@ while True:
 
 	# pause for given interval
 	time.sleep(int(interval))
+# just in case
+else:
+	os.system('sudo fbi ../space.jpg')
