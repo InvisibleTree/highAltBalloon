@@ -49,4 +49,7 @@ while True:
 	altF.close()
 
 	time.sleep(int(interval))
+# just in case
+else:
+	os.system('sudo fbi ../space.jpg')
 
