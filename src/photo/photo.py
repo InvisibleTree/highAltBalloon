@@ -60,5 +60,5 @@ while True:
 
 # just in case
 else:
-	print("\n NOBODY CAN HEAR ME IN SPACE!\n")
+	os.system('sudo fbi ../space.jpg')
  
