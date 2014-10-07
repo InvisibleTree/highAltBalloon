@@ -26,7 +26,8 @@ def readTemp():
 # create log files
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
 logTemp = "TEMP-" + logTime + ".log"
-f = open('../../logs/' + logTemp, 'w')
+# open is only way to invoke O_CREAT as python is shit
+f = open('../../logs/' + logTemp, 'w').close()
 
 # check program arguments
 parser = argparse.ArgumentParser(description='Log surrounding temp.')
