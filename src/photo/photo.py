@@ -13,6 +13,7 @@ parser = argparse.ArgumentParser(description='Log surrounding temp.')
 parser.add_argument("-s" "--seconds", type=int, dest="seconds", help="Number of seconds between images")
 parser.add_argument("--width", type=int, dest="width", help="Saved image width")
 parser.add_argument("--height", type=int, dest="height", help="Saved image height")
+parser.add_argument("--savefolder" "-SF", dest="photoLoc", help="Location of photos")
 args = parser.parse_args()
 
 if args.seconds:
@@ -27,7 +28,10 @@ if args.height:
 	imgHeight = args.height
 else:
 	imgHeight = 1944
-
+if args.photoLoc:
+	photos = args.photoLoc
+else:
+	photos = "photos"
 #saveFolder = input("Enter folder name to save images to: ")
 #imgWidth = input("\nEnter image width (max 2592): ")
 #imgHeight = input("\nEnter image height (max 1944): ")
