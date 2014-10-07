@@ -51,15 +51,11 @@ logAccel = "ACCEL-" + logTime + ".log"
 logGLGyro = "GLGYRO-" + logTime + ".log"
 logGLAccel = "GLACCEL-" + logTime + ".log"
 
-gyroF = open('../../logs/' + logGyro, 'w')
-accelF = open('../../logs/' + logAccel, 'w')
-GLgyroF = open('../../logs/' + logGLGyro, 'w')
-GLaccelF = open('../../logs/' + logGLAccel, 'w')
-
-gyroF.close()
-accelF.close()
-GLgyroF.close()
-GLaccelF.close()
+# open is only way to invoke O_CREAT as python is shit
+gyroF = open('../../logs/' + logGyro, 'w').close()
+accelF = open('../../logs/' + logAccel, 'w').close()
+GLgyroF = open('../../logs/' + logGLGyro, 'w').close()
+GLaccelF = open('../../logs/' + logGLAccel, 'w').close()
 
 # init argparse
 parser = argparse.ArgumentParser(description='Log surrounding gyro/accel.')
