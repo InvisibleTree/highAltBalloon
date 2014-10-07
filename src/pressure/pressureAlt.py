@@ -10,12 +10,11 @@ bmp = BMP085(0x77)
 logTime = datetime.now().strftime("%Y.%m.%d-%H:%M:%S")
 
 logPressure = "PRESSURE-" + logTime + ".log"
-pressureF = open('../../logs/' + logPressure, 'w')
-pressureF.close()
+# open is only way to invoke O_CREAT as python is shit
+pressureF = open('../../logs/' + logPressure, 'w').close()
 
 logAlt = "ALTITUDE-" + logTime + ".log"
-altF = open('../../logs/' + logAlt, 'w')
-altF.close()
+altF = open('../../logs/' + logAlt, 'w').close
 
 # Check command line arguments for parameters
 parser = argparse.ArgumentParser(description='Log surrounding temp.')
