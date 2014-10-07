@@ -55,11 +55,10 @@ while True:
 
 	# capture the image using raspistill - Has sharpening, auto white balance and average metering mode
 	os.system("raspistill -w " + str(imgWidth) + " -h " + str(imgHeight) + " -o " + str(saveFolder) + "/" + (str(day) + '-' + str(month) + '-' + str(year) + '_' + str(hour) + ':' + str(min) + ':' + str(sec)) + ".jpg -sh 40 -awb auto -mm average -v")
-	print("\n---Saving image " + str(fileIncr) +  "---")
 
 	time.sleep(int(interval))
 
 # just in case
 else:
-	print("\n ---Inactive--\n")
+	print("\n NOBODY CAN HEAR ME IN SPACE!\n")
  
