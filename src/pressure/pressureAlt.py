@@ -41,15 +41,15 @@ while True:
 
 	# write to log files
 	pressureF = open('../../logs/' + logPressure, 'a')
-	pressureF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(bmp.readPressure()) + 'Pa\n')
+	pressureF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(round(bmp.readPressure())) + 'Pa\n')
 	pressureF.close
 
 	altF = open('../../logs/' + logAlt, 'a')
-	altF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(bmp.readAltitude()) + 'm\n')
+	altF.write(str(day) + '/' + str(month) + '/' + str(year) + ' ' + str(hour) + ':' + str(min) + ':' + str(sec) + ' = ' + str(round(bmp.readAltitude())) + 'm\n')
 	altF.close()
 
 	time.sleep(int(interval))
 # just in case
 else:
-	os.system('sudo fbi ../space.jpg')
+	print('yo space')
 
